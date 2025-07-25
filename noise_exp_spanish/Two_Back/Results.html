@@ -1,0 +1,61 @@
+{{ block title }}
+Resultados de 2-hacia atrás - Ronda {{ player.round_number }}
+{{ endblock }}
+
+{{ block styles }}
+
+<!-- Cargar los estilos CSS personalizados -->
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+<link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card border-dark mb-3">
+
+    <div class="card-body">
+
+        <p style="text-align: center;"> Gracias por completar la ronda {{ player.round_number }}. A continuación, se muestra un resumen de tu desempeño. </p>
+
+        <hr>
+
+        <p class="blocktext">
+            Respondiste correctamente a <span class="payoff">{{ correct_count }}</span> de <span class="payoff">{{ total_count }}</span> elementos.
+        </p>
+
+        <p class="blocktext">
+            <b>Falsos Positivos:</b> <span class="payoff">{{ false_positives }}</span> &nbsp; | &nbsp;
+            <b>Falsos Negativos:</b> <span class="payoff">{{ false_negatives }}</span>
+        </p>
+
+        <hr>
+
+        <h5 class="blocktext">Cálculo de Ganancias</h5>
+
+        <p class="blocktext">
+            Comenzaste con <span class="payoff">40 puntos</span>. <br>
+            <b>Falsos Negativos:</b> perdiste {{lost_false_negatives}} puntos<br>
+            <b>Falsos Positivos:</b> perdiste {{lost_false_positives}} puntos
+        </p>
+
+        <p class="blocktext">
+            <strong>Tu ganancia total:</strong> <span class="payoff">{{ payoff|cu }}</span>
+        </p>
+
+        <br>
+
+    </div>
+
+</div>
+
+<div>
+    <button class="otree-btn-next btn btn-primary">Continuar</button>
+</div>
+
+{{ endblock }}
+
+{% block scripts %}
+<!-- Cargar las funciones JavaScript personalizadas -->
+<script src="{% static 'global/myJs.js' %}"></script>
+<script src="https://kit.fontawesome.com/46026ecfac.js" crossOrigin="anonymous"></script>
+{% endblock %}

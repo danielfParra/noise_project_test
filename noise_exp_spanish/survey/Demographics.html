@@ -1,0 +1,123 @@
+{{ block title }}
+Cuestionario Final
+{{ endblock }}
+
+{{ block styles }}
+<!-- Cargar los estilos CSS personalizados -->
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+<link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
+
+<style>
+    .mood-img {
+        border: 2px solid transparent;
+        border-radius: 10px;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .mood-img:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
+    .mood-img.selected {
+        border-color: #581845;
+        box-shadow: 0 0 20px rgba(88, 24, 69, 0.8);
+    }
+
+    .col-form-label {
+        font-size: 20px;
+    }
+
+    .form-control {
+        font-size: 20px;
+    }
+
+    input[type="radio"]:checked + .mood-img {
+        border: 3px solid #007bff;
+    }
+</style>
+{{ endblock }}
+
+{{ block content }}
+
+<p class="mb-4">Por favor, responde las siguientes preguntas sobre tu experiencia en el experimento.</p>
+
+<!-- Estado de ánimo -->
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">¿Cuál imagen describe mejor tu estado de ánimo durante el experimento?</h5>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+            {% for value, label in mood_choices %}
+                <label style="cursor: pointer;">
+                    <input type="radio" name="mood_image" value="{{ value }}" style="display:none;">
+                    <img src="/static/global/mood/{{ value }}.png" alt="{{ label }}" width="100" class="mood-img border border-secondary rounded" title="{{ label }}">
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Ambiente -->
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Ambiente de la sala</h5>
+        {{ formfield 'room_environment_rating' }}
+
+        {{ formfield 'room_environment_suggestion' }}
+    </div>
+</div>
+
+<!-- Interés en participar de nuevo -->
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">¿Qué tanto te gustaría participar en un experimento similar en el futuro con las mismas condiciones?</h5>
+        <p>En una escala de 1 (nada) a 7 (mucho):</p>
+
+        <div class="d-flex justify-content-between align-items-center mb-2" style="max-width: 500px; margin: 0 auto;">
+            {% for i in "1234567" %}
+                <label class="text-center">
+                    <input type="radio" name="followup_interest" value="{{ i }}"> <br> {{ i }}
+                </label>
+            {% endfor %}
+        </div>
+        <div class="d-flex justify-content-between" style="max-width: 500px; margin: 0 auto;">
+            <small class="text-start">Nada</small>
+            <small class="text-end">Mucho</small>
+        </div>
+    </div>
+</div>
+
+<!-- Datos demográficos -->
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Datos demográficos</h5>
+        {{ formfield 'age' }}
+        {{ formfield 'gender' }}
+        {{ formfield 'education' }}
+        {{ formfield 'student' }}
+        {{ formfield 'experiments' }}
+
+    </div>
+</div>
+
+<!-- Botón -->
+
+    <button class="otree-btn-next btn btn-primary btn-lg">Continuar</button>
+
+
+<!-- Script para resaltar selección de imagen -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const radios = document.querySelectorAll('input[name="mood_image"]');
+        radios.forEach(radio => {
+            const img = radio.nextElementSibling;
+            img.addEventListener('click', function () {
+                radio.checked = true;
+                document.querySelectorAll('.mood-img').forEach(i => i.classList.remove('selected'));
+                img.classList.add('selected');
+            });
+        });
+    });
+</script>
+
+{{ endblock }}

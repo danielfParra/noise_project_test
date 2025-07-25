@@ -1,0 +1,35 @@
+{{ block title }}
+¡Gracias por participar en este estudio!
+{{ endblock }}
+
+{{ block styles }}
+<!-- Cargar los estilos CSS personalizados -->
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+<link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
+
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card bg-light border-dark mb-3">
+  <div class="card-body">
+    <p class="card-text"> <h5> Recibirás <span class="payoff"> {{ payoff }} </span> basado en tu desempeño en las tareas.
+  </h5></p>
+
+  <h5>
+    Sumando el pago por participar, tu ganancia total en pesos es:
+    <span class="payoff">{{ payoff_plus_participation_fee }} pesos.</span>
+</h5>
+
+  </div></div>
+      <br>
+
+<!--
+<div class="callout callout-danger">
+    <strong>Importante:</strong> Tus ganancias solo contarán en tus pagos finales si esta ronda es relevante para el pago.
+    Recuerda que la mitad de las rondas son relevantes para el pago.
+</div>
+-->
+    <button class="otree-btn-next btn btn-primary">Continuar</button>
+
+{{ endblock }}

@@ -1,0 +1,118 @@
+{{ block title }}
+   {{ n_back }}- hacia atrás
+{{ endblock }}
+
+{{ block styles }}
+<!-- Load the custom CSS styles -->
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+<link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card bg-light m-3">
+    <div class="card-body">
+
+        <h3><i class="fas fa-brain"></i> Esta tarea se llama {{ n_back }}-hacia atrás</h3>
+
+        <p>
+            En este juego, verás una serie de números apareciendo uno tras otro.
+            La secuencia consta de <b>{{ length }}</b> números en total.
+        </p>
+
+        <p>
+            Tu tarea es observar cuidadosamente la secuencia y presionar la barra espaciadora <b>solo</b> cuando el número actual
+            sea exactamente el mismo que el número que apareció <b>{{ n_back }} pasos antes</b>.
+            Tienes tiempo para reaccionar hasta que el número desaparezca después de <b>{{ trial_duration }} segundos</b>.
+        </p>
+
+                <p>
+    Mira el siguiente video para entender cómo funciona el juego.
+</p>
+
+<div class="d-flex justify-content-center align-items-center">
+    <video class="video-fluid" width="640" height="360" controls>
+        <source src="{% static 'global/three-back_tutorial.mp4' %}" type="video/mp4">
+        Tu navegador no soporta la etiqueta de video.
+    </video>
+</div>
+
+
+        <p>
+            <input id="info_button2" type="button" value="&#xf178" onclick="button_click(info_button2, paragraph2);" />
+        </p>
+
+        <div id="paragraph2" class="hidden-paragraph">
+            <br>
+
+                    <p>
+            Presionar la barra espaciadora en el momento equivocado o no presionarla cuando sea necesario cuenta como errores.
+            Si cometes un error, aparecerá un <b style="color: red;">&#10007;</b>, y si tu respuesta es correcta, se mostrará un <b style="color: green;">&#10003;</b>.
+        </p>
+<br>
+
+            <h3><i class="fas fa-gamepad"></i> Cómo Jugar</h3>
+            <ul>
+                <li><i class="fas fa-eye"></i> Para cada nuevo número, recuerda el número que apareció <b>{{ n_back }}</b> elementos atrás.</li>
+                <li><i class="fas fa-hand-pointer"></i> Si el número actual es el mismo que el número de <b>{{ n_back }}</b> elementos antes, presiona la barra espaciadora.</li>
+                <li><i class="fas fa-ban"></i> Si no es el mismo, no presiones nada.</li>
+            </ul>
+
+            <p>
+                <input id="info_button3" type="button" value="&#xf178" onclick="button_click(info_button3, paragraph3);" />
+            </p>
+        </div>
+
+        <div id="paragraph3" class="hidden-paragraph">
+            <br>
+
+            <h3><i class="fas fa-star"></i> Sistema de Puntuación</h3>
+
+            <p>
+                Comienzas con <b>{{ starting_points }} puntos</b>, que luego convertiremos en pesos.
+            </p>
+
+            <ul>
+                <li><i class="fas fa-times-circle"></i> Si fallas un objetivo (no presionas la barra espaciadora cuando deberías), pierdes <b>{{ penalty_miss }} puntos</b>.</li>
+                <li><i class="fas fa-ban"></i> Si presionas la barra espaciadora por error (cuando el número actual no coincide con el de <b>{{ n_back }}</b> elementos antes), pierdes <b>{{ penalty_wrong_press }} punto</b>.</li>
+                <li>
+                     <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Presionar la barra espaciadora para cada número o nunca presionarla llevará a perder <b>{{ penalty_spam }} puntos</b>.
+                    ¡Intenta ser cuidadoso y solo presiona cuando estés seguro!
+                </li>
+            </ul>
+
+            <p>
+                <input id="info_button4" type="button" value="&#xf178" onclick="buttonAppear(); button_click(info_button4, paragraph4);" />
+            </p>
+        </div>
+
+        <div id="paragraph4" class="hidden-paragraph">
+            <h3><i class="fas fa-bullseye"></i> ¿A qué apuntar?</h3>
+
+            <ul>
+                <li><i class="fas fa-eye"></i> <b>Mantente atento:</b> Observa cada número cuidadosamente.</li>
+                <li><i class="fas fa-check-circle"></i> <b>Toma tu decisión:</b> Solo presiona la barra espaciadora cuando notes una coincidencia.</li>
+                <li><i class="fas fa-coins"></i> <b>Mantén tus puntos:</b> Tu objetivo es terminar el juego con la mayor cantidad de puntos posible.</li>
+            </ul>
+
+            <p>
+                ¡Haz tu mejor esfuerzo y buena suerte!
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<div id="next" style="display: none">
+    <button class="otree-btn-next btn btn-primary">Continuar</button>
+</div>
+
+{{ endblock }}
+
+
+{% block scripts %}
+<!-- Load the custom JavaScript functions -->
+<script src="{% static 'global/myJs.js' %}"></script>
+<script src="https://kit.fontawesome.com/46026ecfac.js" crossorigin="anonymous"></script>
+{% endblock %}

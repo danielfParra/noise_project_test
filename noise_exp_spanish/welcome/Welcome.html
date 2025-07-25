@@ -1,0 +1,45 @@
+{{ block title }}
+    Estamos felices de que esté aquí
+{{ endblock }}
+
+{{ block styles }}
+<!-- Cargar los estilos CSS personalizados -->
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+{{ endblock }}
+
+
+{{ block content }}
+
+    <p>
+        ¡Bienvenido/a a nuestro experimento!
+    </p>
+
+    <p>
+        Por favor, lea las instrucciones cuidadosamente. Si tiene alguna pregunta, por favor levante la mano.
+        Nos acercaremos a usted y responderemos su pregunta en privado.
+    </p>
+
+    <p>
+        El experimento de hoy consta de <strong>tres partes</strong>. Cada parte tiene una tarea diferente que deberá completar.
+    </p>
+
+    <p>
+        Durante el experimento no está permitido usar dispositivos electrónicos ni comunicarse con otros participantes.
+        Si viola estas reglas, debemos excluirlo del experimento y del pago.
+    </p>
+
+    <p>
+        Ya ha recibido <b>{{ Constants.SHOW_UP_FEE }}</b> pesos por presentarse al experimento.
+        Durante el experimento podrá ganar puntos. Que al final se convertirán en dinero real.
+        El dinero que gane se le pagará en efectivo al final del experimento.
+
+    </p>
+    <p>
+        Por cada punto que gane recibirá <b>{{ Constants.POINTS_TO_CURRENCY }}</b> pesos.
+        Explicamos cómo funcionará el juego que determina sus pagos en las siguientes pantallas.
+    </p>
+
+
+    <button class="otree-btn-next btn btn-primary">Continuar</button>
+
+{{ endblock }}

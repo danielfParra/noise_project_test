@@ -1,0 +1,16 @@
+{{ block title }}
+    Número de Computador
+{{ endblock }}
+
+{{ block styles }}
+<!-- Cargar los estilos CSS personalizados -->
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+{{ endblock }}
+
+{{ block content }}
+
+    {{ formfield 'computer_number' }}
+
+    <button class="otree-btn-next btn btn-primary">Continuar</button>
+
+{{ endblock }}

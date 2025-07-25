@@ -1,0 +1,74 @@
+{{ block title }}
+    Tarea de Recordar Palabras
+{{ endblock }}
+
+{{ block styles }}
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+<link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+    .word-box {
+        width: 100%;
+        padding: 10px;
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+</style>
+
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card bg-light m-3">
+    <div class="card-body">
+        <h3><i class="fas fa-pencil-alt"></i> Tarea de Recordar Palabras</h3>
+
+        <p>Ahora, por favor escribe tantas palabras como recuerdes de la tarea de memorización.</p>
+        <p>Cada palabra correcta gana <b>{{ C.PAYOFF_PER_CORRECT_WORD }}</b>.</p>
+
+        <form method="post">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        {{ formfields }}
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <button class="otree-btn-next btn btn-primary">Continuar</button>
+        </form>
+    </div>
+</div>
+
+<script>
+// Disable right-click context menu
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// Disable common copy shortcuts
+document.addEventListener('keydown', function(e) {
+    // Disable Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X, F12
+    if (e.ctrlKey && (e.key === 'a' || e.key === 'c' || e.key === 'v' || e.key === 'x')) {
+        e.preventDefault();
+        return false;
+    }
+    // Disable F12 (Developer Tools)
+    if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// Disable text selection with mouse
+document.onselectstart = function() {
+    return false;
+};
+</script>
+
+
+{{ endblock }}
+

@@ -1,0 +1,36 @@
+{{ block title }}
+    Tarea de Razonamiento Lógico
+{{ endblock }}
+
+{{ block styles }}
+<!-- Cargar los estilos CSS personalizados -->
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+<link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card border-warning m-3">
+    <div class="card-body">
+
+        <h3><i class="fas fa-lightbulb"></i> Tarea de Razonamiento Lógico</h3>
+
+        <p>Para esta parte del experimento, tienes <b>{{ time_limit_logic|to0 }} minutos</b> comenzando ahora.</p>
+        <p>Responde las siguientes <b>7 preguntas</b>. Ganarás <b>{{ C.PAYOFF_PER_CORRECT_QUESTION }} puntos</b> por cada respuesta correcta.</p>
+
+        {{ formfield 'q1' label="1) Un bate y una pelota cuestan $1.10 en total. El bate cuesta un dólar más que la pelota. ¿Cuánto cuesta la pelota? (en centavos)" }}
+        {{ formfield 'q2' label="2) Si 5 máquinas tardan 5 minutos en hacer 5 widgets, ¿cuánto tiempo tardarían 100 máquinas en hacer 100 widgets? (en minutos)" }}
+        {{ formfield 'q3' label="3) En un lago, un grupo de lirios dobla su tamaño cada día. Si tarda 48 días en cubrir todo el lago, ¿cuánto tiempo para cubrir la mitad?" }}
+        {{ formfield 'q4' label="4) Si Juan tarda 6 días en beber un barril y María 12 días, ¿cuánto tiempo tardan juntos en beber un barril?" }}
+        {{ formfield 'q5' label="5) Jerry recibió tanto la 15ª calificación más alta como la 15ª más baja de la clase. ¿Cuántos estudiantes hay en su clase?" }}
+        {{ formfield 'q6' label="6) Un hombre compra un cerdo por $60, lo vende por $70, lo compra de nuevo por $80 y lo vende por $90. ¿Cuánto ha ganado?" }}
+        {{ formfield 'q7' label="7) Simón invirtió $8,000, perdió 50%, luego ganó 75%. ¿Cuál es su estado final?" }}
+
+    </div>
+</div>
+
+<button class="otree-btn-next btn btn-primary">Continuar</button>
+
+{{ endblock }}

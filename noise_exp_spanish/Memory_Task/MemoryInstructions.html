@@ -1,0 +1,90 @@
+{{ block title }}
+    Tarea de Memoria
+{{ endblock }}
+
+{{ block styles }}
+<!-- Cargar los estilos CSS personalizados -->
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+<link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card bg-light m-3">
+    <div class="card-body">
+
+        <h3><i class="fas fa-brain"></i> ¡Bienvenido a la Tarea de Memoria!</h3>
+
+        <p>
+            Para esta parte del experimento, tienes <b>{{ time_limit|to0 }} minutos</b> comenzando ahora.
+        </p>
+
+        <p>
+            Tu tarea es memorizar tantas palabras como puedas de la lista de <b>{{ num_words }}</b> palabras a continuación.
+            <strong>No se te permite escribirlas ahora.</strong>
+        </p>
+
+        <p>
+            Después de completar un cuestionario, recordarás tantas palabras como sea posible.
+            Ganarás <b>{{ payoff_per_correct }}</b> por cada palabra correcta.
+            El orden no importa.
+        </p>
+
+
+        <div id="paragraph2">
+            <br>
+            <h3><i class="fas fa-list-ul"></i> Palabras para Memorizar</h3>
+            <div class="card bg-white border rounded p-4">
+                <div class="row">
+                    {% for word in word_list %}
+                        <div class="col-3 text-center" style="font-size: 1.5rem; padding: 8px;">
+                            {{ word }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <p><em>El experimento continuará automáticamente después de {{ time_limit|to0 }} minutos.</em></p>
+        </div>
+
+    </div>
+</div>
+
+<div id="next" style="display: none">
+    <button class="otree-btn-next btn btn-primary">Continuar</button>
+</div>
+
+{{ endblock }}
+
+{% block scripts %}
+
+<script>
+// Disable right-click context menu
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// Disable common copy shortcuts
+document.addEventListener('keydown', function(e) {
+    // Disable Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X, F12
+    if (e.ctrlKey && (e.key === 'a' || e.key === 'c' || e.key === 'v' || e.key === 'x')) {
+        e.preventDefault();
+        return false;
+    }
+    // Disable F12 (Developer Tools)
+    if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// Disable text selection with mouse
+document.onselectstart = function() {
+    return false;
+};
+</script>
+
+<!-- Cargar las funciones JavaScript personalizadas -->
+<script src="{% static 'global/myJs.js' %}"></script>
+{{ endblock }}
